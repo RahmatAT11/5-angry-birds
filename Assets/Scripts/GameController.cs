@@ -96,8 +96,6 @@ public class GameController : MonoBehaviour
     public void ChangeLevel()
     {
         int nextSceneIndex = _currentSceneIndex + 1;
-        Debug.Log(nextSceneIndex);
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
         if (nextSceneIndex > SceneManager.sceneCountInBuildSettings - 1)
         {
             nextSceneIndex = 0;
