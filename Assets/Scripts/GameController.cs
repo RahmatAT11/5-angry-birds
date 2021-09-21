@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class GameController : MonoBehaviour
 
     private bool _isGameEnded = false;
 
+    private int _currentSceneIndex = 0;
+
     private void Start()
     {
+        _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         for (int i = 0; i < Birds.Count; i++)
         {
             Birds[i].OnBirdDestroyed += ChangeBird;
@@ -29,6 +33,14 @@ public class GameController : MonoBehaviour
         TapCollider.enabled = false;
         SlingShooter.InitiateBird(Birds[0]);
         _shotBird = Birds[0];
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ChangeLevel();
+        }
     }
 
     private void OnMouseUp()
@@ -79,5 +91,18 @@ public class GameController : MonoBehaviour
         {
             _isGameEnded = true;
         }
+    }
+
+    public void ChangeLevel()
+    {
+        int nextSceneIndex = _currentSceneIndex + 1;
+        Debug.Log(nextSceneIndex);
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
+        if (nextSceneIndex > SceneManager.sceneCountInBuildSettings - 1)
+        {
+            nextSceneIndex = 0;
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
