@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -7,6 +8,8 @@ public class GameController : MonoBehaviour
     public TrailController TrailController;
     public List<Bird> Birds;
     public List<Enemy> Enemies;
+    private Bird _shotBird;
+    public BoxCollider2D TapCollider;
 
     private bool _isGameEnded = false;
 
@@ -22,12 +25,24 @@ public class GameController : MonoBehaviour
         {
             Enemies[i].OnEnemyDestroyed += CheckGameEnd;
         }
-        
+
+        TapCollider.enabled = false;
         SlingShooter.InitiateBird(Birds[0]);
+        _shotBird = Birds[0];
+    }
+
+    private void OnMouseUp()
+    {
+        if (_shotBird != null)
+        {
+            _shotBird.OnTap();
+        }
     }
 
     public void ChangeBird()
     {
+        TapCollider.enabled = false;
+        
         if (_isGameEnded)
         {
             return;
@@ -38,6 +53,7 @@ public class GameController : MonoBehaviour
         if (Birds.Count > 0)
         {
             SlingShooter.InitiateBird(Birds[0]);
+            _shotBird = Birds[0];
         }
     }
 
@@ -45,6 +61,7 @@ public class GameController : MonoBehaviour
     {
         TrailController.SetBird(bird);
         StartCoroutine(TrailController.SpawnTrail());
+        TapCollider.enabled = true;
     }
 
     public void CheckGameEnd(GameObject destroyedEnemy)
