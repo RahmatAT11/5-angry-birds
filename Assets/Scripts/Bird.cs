@@ -59,6 +59,11 @@ public class Bird : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collider)
     {
         _state = BirdState.HitSomething;
+
+        if (_state == BirdState.HitSomething)
+        {
+            OnHitSomething();
+        }
     }
 
     private IEnumerator DestroyAfter(float second)
@@ -82,6 +87,11 @@ public class Bird : MonoBehaviour
     }
 
     public virtual void OnTap()
+    {
+        // Do nothing
+    }
+
+    public virtual void OnHitSomething()
     {
         // Do nothing
     }

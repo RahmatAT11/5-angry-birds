@@ -1015,6 +1015,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4431414378566978385, guid: 3f60551be8ec56543829c00b8301f99b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431414378756052300, guid: 3f60551be8ec56543829c00b8301f99b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431414379036167773, guid: 3f60551be8ec56543829c00b8301f99b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431414379632129311, guid: 3f60551be8ec56543829c00b8301f99b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431414380160866724, guid: 3f60551be8ec56543829c00b8301f99b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431414380339085320, guid: 3f60551be8ec56543829c00b8301f99b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f60551be8ec56543829c00b8301f99b, type: 3}
 --- !u!1 &1346963955
@@ -1166,7 +1196,7 @@ GameObject:
   - component: {fileID: 1678268571}
   - component: {fileID: 1678268570}
   m_Layer: 0
-  m_Name: RedBird (2)
+  m_Name: Owl
   m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1181,11 +1211,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1678268569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9abbac87bff76512acb24ab8f33a3a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c50c9cb396608ba3b7170de80a0ef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 1678268572}
   Collider: {fileID: 1678268571}
+  CanExplode: 0
+  LayerToHit:
+    serializedVersion: 2
+    m_Bits: 256
+  _explosionRadius: 2
+  _explosionForce: 200
 --- !u!58 &1678268571
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1260,7 +1296,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 8d65fab5aa828d7439359b962c57d921, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d20e3fb65723114693388b7b8c277c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1510,7 +1546,7 @@ GameObject:
   - component: {fileID: 2057635480}
   - component: {fileID: 2057635479}
   - component: {fileID: 2057635481}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1662,9 +1698,9 @@ MonoBehaviour:
   SlingShooter: {fileID: 1173889210}
   TrailController: {fileID: 325261305}
   Birds:
+  - {fileID: 1678268570}
   - {fileID: 41336735}
   - {fileID: 785309915}
-  - {fileID: 1678268570}
   Enemies:
   - {fileID: 2057635481}
   TapCollider: {fileID: 2060894827}
