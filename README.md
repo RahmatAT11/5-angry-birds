@@ -17,3 +17,8 @@ Game ini merupakan sebuah proyek game berdasarkan materi chapter 5 dalam studi i
 ### Eksekusi Program
 
 * Jalankan file .exe dengan klik 2 kali pada file tersebut.
+
+### Fitur Tambahan
+* Burung yang bisa meledak
+* 1 Level baru
+* Berubah level yang dimainkan dengan menekan tombol C
