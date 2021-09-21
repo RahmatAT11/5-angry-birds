@@ -6,6 +6,7 @@ using UnityEngine;
 public class SlingShooter : MonoBehaviour
 {
     public CircleCollider2D Collider;
+    public LineRenderer Trajectory;
     private Vector2 _startPos;
 
     [SerializeField] private float _radius = 0.75f;
@@ -28,6 +29,7 @@ public class SlingShooter : MonoBehaviour
         
         // Kembalikan ketapel ke posisi awal
         gameObject.transform.position = _startPos;
+        Trajectory.enabled = false;
     }
 
     private void OnMouseDrag()
@@ -43,6 +45,46 @@ public class SlingShooter : MonoBehaviour
         }
 
         transform.position = _startPos + dir;
+
+        float distance = Vector2.Distance(_startPos, transform.position);
+
+        if (!Trajectory.enabled)
+        {
+            Trajectory.enabled = true;
+        }
+
+        DisplayTrajectory(distance);
+    }
+
+    private void DisplayTrajectory(float distance)
+    {
+        if (_bird == null)
+        {
+            return;
+        }
+
+        Vector2 velocity = _startPos - (Vector2)transform.position;
+        int segmentCount = 5;
+        Vector2[] segments = new Vector2[segmentCount];
+        
+        // Posisi awal trajectory merupakan posisi mouse dari player saat ini
+        segments[0] = transform.position;
+        
+        // Velocity awal
+        Vector2 segVelocity = velocity * _throwSpeed * distance;
+
+        for (int i = 1; i < segmentCount; i++)
+        {
+            float elapsedTime = i * Time.fixedDeltaTime * 5;
+            segments[i] = segments[0] + segVelocity * elapsedTime + 0.5f * Physics2D.gravity *
+                Mathf.Pow(elapsedTime, 2);
+        }
+
+        Trajectory.positionCount = segmentCount;
+        for (int i = 0; i < segmentCount; i++)
+        {
+            Trajectory.SetPosition(i, segments[i]);
+        }
     }
 
     public void InitiateBird(Bird bird)
